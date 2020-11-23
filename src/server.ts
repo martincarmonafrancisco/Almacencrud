@@ -49,22 +49,14 @@ const main = async () => {
                     _caducidad: producto.caducidad
                 }
                 const oSchema = new Productos(dSchema)
-                // Controlamos el error de validación
-                // Hay que hacer el control con then y catch 
-                // Con el callback de save salta a la siguiente instrucción 
-                // mientras se resuelve el callback y se desconecta y sigue el switch
                 await oSchema.save()
                 .then( (doc) => console.log('Salvado Correctamente: '+ doc) )
-                .catch( (err: any) => console.log('Error: '+ err)) 
-                // concatenando con cadena muestra sólo el mensaje
-
+                .catch( (err: any) => console.log('Error: '+ err))
                 await db.desconectarBD()
                 break
             case 4:
                 await db.conectarBD()
                 nombre = await leerTeclado('Introduzca el nombre del producto')
-                // Controlamos el error de validación
-                // Recordar que hay que poner la opción useFindAndModify: false
                 await Productos.findOneAndUpdate({ _nombre: producto.nombre }, 
                     {
                         _nombre: producto.nombre,
@@ -74,11 +66,11 @@ const main = async () => {
                         _caducidad: producto.caducidad
                     },
                     {
-                        runValidators: true // para que se ejecuten las validaciones del Schema
+                        runValidators: true
                     }  
                 )                
                 .then(() => console.log('Modificado Correctamente') )
-                .catch( (err) => console.log('Error: '+err)) // concatenando con cadena muestra mensaje
+                .catch( (err) => console.log('Error: '+err))
                 await db.desconectarBD()
                 break
             case 5:
