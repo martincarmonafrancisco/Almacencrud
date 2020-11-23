@@ -57,6 +57,12 @@ const main = async () => {
             case 4:
                 await db.conectarBD()
                 nombre = await leerTeclado('Introduzca el nombre del producto')
+                precio =  parseInt( await leerTeclado('Introduzca el nuevo precio'))
+                tipo =  await leerTeclado('Introduzca el nuevo tipo de producto (alimentacion/sanitario)')
+                cantidad =  parseInt( await leerTeclado('Introduzca la nueva cantidad del producto'))
+                caducidad = new Date(await leerTeclado('fecha de caducidad nueva (formato aaaa-mm-DD)'))
+                producto = new Producto(nombre, precio, tipo, cantidad, caducidad)
+
                 await Productos.findOneAndUpdate({ _nombre: producto.nombre }, 
                     {
                         _nombre: producto.nombre,
@@ -112,7 +118,7 @@ const main = async () => {
                 console.log(`Caducidad: ${producto.caducidad}`)                               
                 break
             case 0:
-                console.log('\n--ADIÓS--')
+                console.log('\n--Gracias por usar nuestro programa--')
                 break
             default:
                 console.log("Opción incorrecta")

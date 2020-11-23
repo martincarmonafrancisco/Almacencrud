@@ -55,21 +55,19 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                     _caducidad: producto.caducidad
                 };
                 const oSchema = new Producto_1.Productos(dSchema);
-                // Controlamos el error de validación
-                // Hay que hacer el control con then y catch 
-                // Con el callback de save salta a la siguiente instrucción 
-                // mientras se resuelve el callback y se desconecta y sigue el switch
                 yield oSchema.save()
                     .then((doc) => console.log('Salvado Correctamente: ' + doc))
                     .catch((err) => console.log('Error: ' + err));
-                // concatenando con cadena muestra sólo el mensaje
                 yield database_1.db.desconectarBD();
                 break;
             case 4:
                 yield database_1.db.conectarBD();
                 nombre = yield lecturaTeclado_1.leerTeclado('Introduzca el nombre del producto');
-                // Controlamos el error de validación
-                // Recordar que hay que poner la opción useFindAndModify: false
+                precio = parseInt(yield lecturaTeclado_1.leerTeclado('Introduzca el nuevo precio'));
+                tipo = yield lecturaTeclado_1.leerTeclado('Introduzca el nuevo tipo de producto (alimentacion/sanitario)');
+                cantidad = parseInt(yield lecturaTeclado_1.leerTeclado('Introduzca la nueva cantidad del producto'));
+                caducidad = new Date(yield lecturaTeclado_1.leerTeclado('fecha de caducidad nueva (formato aaaa-mm-DD)'));
+                producto = new Producto_1.Producto(nombre, precio, tipo, cantidad, caducidad);
                 yield Producto_1.Productos.findOneAndUpdate({ _nombre: producto.nombre }, {
                     _nombre: producto.nombre,
                     _precio: producto.precio,
@@ -77,10 +75,10 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                     _cantidad: producto.cantidad,
                     _caducidad: producto.caducidad
                 }, {
-                    runValidators: true // para que se ejecuten las validaciones del Schema
+                    runValidators: true
                 })
                     .then(() => console.log('Modificado Correctamente'))
-                    .catch((err) => console.log('Error: ' + err)); // concatenando con cadena muestra mensaje
+                    .catch((err) => console.log('Error: ' + err));
                 yield database_1.db.desconectarBD();
                 break;
             case 5:
@@ -125,7 +123,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                 console.log(`Caducidad: ${producto.caducidad}`);
                 break;
             case 0:
-                console.log('\n--ADIÓS--');
+                console.log('\n--Gracias por usar nuestro programa--');
                 break;
             default:
                 console.log("Opción incorrecta");
