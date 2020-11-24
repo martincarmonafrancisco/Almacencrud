@@ -33,11 +33,20 @@ class Producto {
             return this._precio * 0.04 + this._precio * this._cantidad;
         }
     }
+    dias() {
+        let miliseconds = this._caducidad.getTime() - new Date().getTime();
+        let dias = miliseconds / 86400000;
+        let calc = Math.floor(dias);
+        return calc;
+    }
 }
 exports.Producto = Producto;
 // Definimos el Schema
 const productoSchema = new mongoose_1.Schema({
-    _nombre: String,
+    _nombre: {
+        type: String,
+        unique: false
+    },
     _precio: {
         type: Number,
         min: 0.1

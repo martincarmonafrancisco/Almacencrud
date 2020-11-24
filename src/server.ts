@@ -25,7 +25,7 @@ const main = async () => {
                 caducidad = new Date(await leerTeclado('fecha de caducidad (formato aaaa-mm-DD)'))
                 producto = new Producto(nombre, precio, tipo, cantidad, caducidad)
                 try {
-                    
+                    nombre = producto.nombre
                 }catch(error){
                     console.log(error)
                     producto = new Producto("",0,"",0,new Date())
@@ -117,6 +117,15 @@ const main = async () => {
                 console.log(`Cantidad: ${producto.cantidad}`)
                 console.log(`Caducidad: ${producto.caducidad}`)                               
                 break
+
+                case 8:
+                    try{
+                        let dias = producto.dias()
+                        console.log(`Quedan ${dias} días para que el producto o productos caduquen`)
+                    }catch (e){
+                        console.log("No ha entrado en la opción 1: " + e)
+                    }
+                    break
             case 0:
                 console.log('\n--Gracias por usar nuestro programa--')
                 break

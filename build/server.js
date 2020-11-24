@@ -30,6 +30,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                 caducidad = new Date(yield lecturaTeclado_1.leerTeclado('fecha de caducidad (formato aaaa-mm-DD)'));
                 producto = new Producto_1.Producto(nombre, precio, tipo, cantidad, caducidad);
                 try {
+                    nombre = producto.nombre;
                 }
                 catch (error) {
                     console.log(error);
@@ -121,6 +122,15 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                 console.log(`Tipo: ${producto.tipo}`);
                 console.log(`Cantidad: ${producto.cantidad}`);
                 console.log(`Caducidad: ${producto.caducidad}`);
+                break;
+            case 8:
+                try {
+                    let dias = producto.dias();
+                    console.log(`Quedan ${dias} días para que el producto o productos caduquen`);
+                }
+                catch (e) {
+                    console.log("No ha entrado en la opción 1: " + e);
+                }
                 break;
             case 0:
                 console.log('\n--Gracias por usar nuestro programa--');

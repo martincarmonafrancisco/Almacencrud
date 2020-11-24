@@ -21,6 +21,7 @@ exports.menuProducto = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log('5.- Borrar Producto de la BD');
     console.log('6.- Cargar Producto desde la BD');
     console.log('7.- Mostrar Producto');
+    console.log('8.- Mostrar días para la caducidad');
     console.log('0.- SALIR');
     n = parseInt(yield lecturaTeclado_1.leerTeclado('--OPCIÓN--'));
     return n;

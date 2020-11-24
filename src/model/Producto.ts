@@ -43,6 +43,13 @@ export class Producto{
             return this._precio*0.04+this._precio*this._cantidad
         }
     }
+    
+    dias(){
+        let miliseconds = this._caducidad.getTime() - new Date().getTime()
+        let dias = miliseconds/86400000 
+        let calc = Math.floor(dias)
+        return calc
+    }
 }
 
 // Definimos el type
@@ -58,7 +65,10 @@ export type tProducto = {
 
 // Definimos el Schema
 const productoSchema = new Schema({
-    _nombre: String,
+    _nombre: {
+        type: String,
+        unique: false
+    },
     _precio: {
         type: Number,
         min: 0.1

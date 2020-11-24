@@ -10,6 +10,7 @@ export const menuProducto = async () => {
     console.log('5.- Borrar Producto de la BD')
     console.log('6.- Cargar Producto desde la BD')
     console.log('7.- Mostrar Producto')
+    console.log('8.- Mostrar días para la caducidad')
     console.log('0.- SALIR')
     n = parseInt( await leerTeclado('--OPCIÓN--') )
     return n
