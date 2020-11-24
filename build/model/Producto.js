@@ -58,7 +58,7 @@ const productoSchema = new mongoose_1.Schema({
     },
     _caducidad: {
         type: Date,
-        min: new Date("2020-11-25")
+        min: new Date()
     }
 });
 exports.Productos = mongoose_1.model('productos', productoSchema);

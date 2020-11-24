@@ -80,7 +80,7 @@ const productoSchema = new Schema({
     },
     _caducidad: {
         type: Date,
-        min: new Date("2020-11-25")
+        min: new Date()
     }
 })
 export const Productos = model('productos', productoSchema)
